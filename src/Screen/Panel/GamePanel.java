@@ -15,7 +15,7 @@ public class GamePanel extends JPanel {
         // Set the preferred size of the panel based on the game dimensions
         setPreferredSize(new Dimension(gameManager.gameWidth, gameManager.gameHeight));
         // Set the background color of the panel
-        setBackground(Color.BLACK);
+        setBackground(Color.GREEN);
         // Enable double buffering for smoother rendering
         setDoubleBuffered(true);
 

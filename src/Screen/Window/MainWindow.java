@@ -1,4 +1,4 @@
-package Screen;
+package Screen.Window;
 
 import javax.swing.*;
 
@@ -14,7 +14,7 @@ public class MainWindow {
         window.setSize(800, 600);
         // Don't specify a location of the window center
         window.setLocationRelativeTo(null);
-        window.setTitle("Zombie Survival");
+        window.setTitle("Lite RPG");
     }
 
     public void display() {

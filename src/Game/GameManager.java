@@ -5,7 +5,7 @@ import Game.Event.Listener.GamePanelKeyListener;
 import Game.World.Position;
 import Renderer.PlayerRenderer;
 import Renderer.RenderSystem;
-import Screen.MainWindow;
+import Screen.Window.MainWindow;
 import Screen.Panel.GamePanel;
 
 import java.awt.*;
@@ -37,7 +37,7 @@ public final class GameManager {
 
     public RenderSystem getRenderSystem() {
         RenderSystem renderSystem = new RenderSystem();
-        PlayerRenderer playerRenderer = new PlayerRenderer();
+        PlayerRenderer playerRenderer = new PlayerRenderer(scaleFactor);
         renderSystem.registerRenderer(Player.class, playerRenderer);
 
         return renderSystem;
@@ -64,6 +64,9 @@ public final class GameManager {
     }
 
     public void render(Graphics2D g2d) {
+        if (game == null) {
+            return; // Ensure the game and player are initialized before rendering
+        }
         renderSystem.render(g2d, game.getPlayer());
     }
 

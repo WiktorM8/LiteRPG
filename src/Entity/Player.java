@@ -1,18 +1,27 @@
 package Entity;
 
+import Framework.Event.Enum.World.Direction;
 import Game.World.Position;
 
+import static java.lang.Math.abs;
+
 public class Player extends Entity {
-    private final int DEFAULT_X = 100;
-    private final int DEFAULT_Y = 100;
-    private final int DEFAULT_STRENGTH = 10;
-    private final int DEFAULT_HEALTH = 100;
-    private final int DEFAULT_SPEED = 5;
+    private static final int DEFAULT_X = 100;
+    private static final int DEFAULT_Y = 100;
+    private static final int DEFAULT_STRENGTH = 10;
+    private static final int DEFAULT_HEALTH = 100;
+    private static final int DEFAULT_SPEED = 4;
 
     private Position movementPosition;
 
     public Player() {
-        initializePlayer();
+        super(
+            new Position(DEFAULT_X, DEFAULT_Y),
+            DEFAULT_STRENGTH,
+            DEFAULT_HEALTH,
+            DEFAULT_SPEED
+        );
+        movementPosition = new Position(DEFAULT_X, DEFAULT_Y);
     }
 
     public void setPlayerMovementPosition(double x, double y) {
@@ -26,7 +35,7 @@ public class Player extends Entity {
     }
 
     private void initializePlayer() {
-        this.position = new Position(DEFAULT_X, DEFAULT_Y);
+        this.position =
         this.movementPosition = new Position(DEFAULT_X, DEFAULT_Y);
         this.strength = DEFAULT_STRENGTH;
         this.health = DEFAULT_HEALTH;
@@ -47,6 +56,14 @@ public class Player extends Entity {
                 position.setX(movementPosition.getX());
                 position.setY(movementPosition.getY());
             }
+
+            if (abs(deltaX) > abs(deltaY)) {
+                direction = deltaX > 0 ? Direction.RIGHT : Direction.LEFT;
+            } else {
+                direction = deltaY > 0 ? Direction.DOWN : Direction.UP;
+            }
+        } else {
+            direction = Direction.NONE; // No movement, reset direction
         }
     }
 

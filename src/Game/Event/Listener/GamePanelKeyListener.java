@@ -1,8 +1,22 @@
 package Game.Event.Listener;
 
+import Game.GameManager;
+import Game.World.Position;
+
 import java.awt.event.*;
 
 public class GamePanelKeyListener implements KeyListener, MouseListener {
+    private final GameManager gameManager;
+
+    private final int tileSize;
+    private final int tileCenterOffset;
+
+    public GamePanelKeyListener(GameManager gameManager) {
+        this.gameManager = gameManager;
+        tileSize = gameManager.tileSize;
+        tileCenterOffset = tileSize / 2;
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {}
 
@@ -25,8 +39,15 @@ public class GamePanelKeyListener implements KeyListener, MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
+        if (e.getButton() == MouseEvent.BUTTON1) {
+            int pixelX = e.getX() - tileCenterOffset;
+            int pixelY = e.getY() - tileCenterOffset;
 
+            Position position = new Position(pixelX, pixelY);
+            gameManager.setPlayerMovement(position);
+        }
     }
+
 
     @Override
     public void mouseReleased(MouseEvent e) {

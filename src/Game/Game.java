@@ -1,11 +1,23 @@
 package Game;
 
+import Entity.Player;
+import Game.World.BaseWorld;
+import Game.World.Position;
+import Game.World.SunnyFields;
 import Logger.ErrorLogger;
+import Renderer.RenderSystem;
+
+import java.awt.*;
 
 public class Game implements Runnable {
     private final Thread gameThread; // Thread for the game loop
-    private boolean running = false; // Flag to control the game loop
     private final GameManager gameManager;
+
+    private boolean running = false; // Flag to control the game loop
+
+    // Game state variables
+    private BaseWorld world; // The game world
+    private Player player; // The player entity
 
     // Game settings
     private final int SECOND_IN_NANOSECONDS = 1_000_000_000; // 1 second in nanoseconds
@@ -17,19 +29,29 @@ public class Game implements Runnable {
         gameThread = new Thread(this);
         running = true;
         gameThread.start();
+        player = new Player(); // Initialize the player entity
+        world = new SunnyFields(player); // Initialize the game world
     }
 
     private void update() {
-        // Update game logic here
-        // This method can be called from the game loop to update the game state
+        player.update();
     }
 
     private void render() {
-        gameManager.updateGameView();
+        gameManager.requestRender();
     }
 
     /**
-     * Should not be called outside the GameManager class.
+     * @param position Position to which the player will move.
+     */
+    public void setPlayerMovementPosition(Position position) {
+        if (player != null) {
+            player.setPlayerMovementPosition(position);
+        }
+    }
+
+    /**
+     * Should not be called outside the Game class.
      */
     @Override
     public void run() {
@@ -54,5 +76,18 @@ public class Game implements Runnable {
                 logger.logError("Game thread interrupted", e);
             }
         }
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+    public Player getPlayer() {
+        return player;
+    }
+    public void setWorld(BaseWorld world) {
+        this.world = world;
+    }
+    public BaseWorld getWorld() {
+        return world;
     }
 }

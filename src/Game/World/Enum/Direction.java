@@ -1,4 +1,4 @@
-package Framework.Event.Enum.World;
+package Game.World.Enum;
 
 public enum Direction {
     NONE("NONE"),

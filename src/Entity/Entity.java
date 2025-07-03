@@ -1,6 +1,6 @@
 package Entity;
 
-import Framework.Event.Enum.World.Direction;
+import Game.World.Enum.Direction;
 import Game.World.Position;
 import Renderer.AnimationState;
 

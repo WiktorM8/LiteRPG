@@ -1,7 +1,7 @@
 package Renderer;
 
 import Entity.Player;
-import Framework.Event.Enum.World.Direction;
+import Game.World.Enum.Direction;
 import Game.World.Position;
 import Renderer.Utils.ImageUtils;
 

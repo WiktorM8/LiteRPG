@@ -1,6 +1,7 @@
 package Game.Entity.Mob;
 
 import Game.GameManager;
+import Game.World.BaseWorld;
 import Game.World.Enum.DirectionType;
 import Game.World.Enum.Entity.EntityType;
 import Game.World.Enum.Entity.MobType;
@@ -18,9 +19,10 @@ public class Player extends Mob {
     private GameManager gameManager;
     private Position movementPosition;
 
-    public Player(GameManager gameManager) {
+    public Player(GameManager gameManager, BaseWorld world) {
         super(
             MobType.PLAYER,
+            world,
             new Position(DEFAULT_X, DEFAULT_Y),
             DEFAULT_STRENGTH,
             DEFAULT_HEALTH,
@@ -60,6 +62,9 @@ public class Player extends Mob {
             } else {
                 direction = deltaY > 0 ? DirectionType.DOWN : DirectionType.UP;
             }
+
+            // Check for block collision
+            checkBlockCollision();
         } else {
             direction = DirectionType.NONE; // No movement, reset direction
         }

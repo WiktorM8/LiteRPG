@@ -74,4 +74,11 @@ public enum BlockType {
                 ", texture:'" + texture + '\'' +
                 '}';
     }
+
+    public boolean isSolid() {
+        return solid == SolidType.SOLID;
+    }
+    public boolean isWater() {
+        return solid == SolidType.WATER;
+    }
 }

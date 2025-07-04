@@ -68,4 +68,7 @@ public abstract class BaseWorld {
     public Player getPlayer() {
         return gameManager.getGame().getPlayer();
     }
+    public int getTileSize() {
+        return gameManager.tileSize;
+    }
 }

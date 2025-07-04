@@ -52,13 +52,6 @@ public class WorldLoader {
                 }
             }
 
-            for (int i = 0; i < width; i++) {
-                System.out.println(mapData[i][20].getBlockType().getName());
-            }
-
-            player.setPosition(spawnX * gameManager.tileSize, spawnY * gameManager.tileSize); // Set player position to spawn point
-            player.setPlayerMovementPosition(spawnX * gameManager.tileSize, spawnY * gameManager.tileSize); // Set player position to spawn point
-
         } catch (Exception e) {
             ErrorLogger.log("Failed to load world: " + worldPath, e);
             throw new RuntimeException("Failed to load world: " + worldPath, e);
@@ -72,6 +65,10 @@ public class WorldLoader {
             default:
                 throw new IllegalArgumentException("Unsupported world type: " + worldType);
         }
+
+        player.setPosition(spawnX * gameManager.tileSize, spawnY * gameManager.tileSize); // Set player position to spawn point
+        player.setPlayerMovementPosition(spawnX * gameManager.tileSize, spawnY * gameManager.tileSize); // Set player position to spawn point
+        player.setWorld(world);
 
         return world;
     }

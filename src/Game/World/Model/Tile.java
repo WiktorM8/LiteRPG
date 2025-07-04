@@ -12,4 +12,11 @@ public class Tile {
     public BlockType getBlockType() {
         return blockType;
     }
+
+    public boolean isSolid() {
+        return blockType.isSolid();
+    }
+    public boolean isWater() {
+        return blockType.isWater();
+    }
 }

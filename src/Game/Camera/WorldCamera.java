@@ -30,7 +30,7 @@ public class WorldCamera {
         double camY = Math.max(
                 0,
                 Math.min(
-                        targetY - screenHeight / 2.0 + tileSize / 2.0 + GUIRenderer.GUI_BAR_HEIGHT / 2.0,
+                        targetY - screenHeight / 2.0 + tileSize / 2.0,
                         worldHeightPx - screenHeight + tileSize / 4.0
                 )
         );

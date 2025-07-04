@@ -5,10 +5,15 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import Logger.ErrorLogger;
 import org.json.JSONObject;
 
 public class AnimatedTexture {
+    private static final String DEFAULT_CONFIG_PATH = "assets/textures/default.json";
+
     private BufferedImage[] frames;
     private int frameCount;
     private int frameTime;
@@ -16,7 +21,14 @@ public class AnimatedTexture {
 
     public AnimatedTexture(String texturePath, String configPath) {
         try {
-            JSONObject config = new JSONObject(new String(Files.readAllBytes(Paths.get(configPath))));
+            JSONObject config;
+            Path path = Paths.get(configPath);
+            if (Files.exists(path)) {
+                config = new JSONObject(new String(Files.readAllBytes(path)));
+            } else {
+                config = new JSONObject(new String(Files.readAllBytes(Paths.get(DEFAULT_CONFIG_PATH))));
+            }
+
             frameCount = config.getInt("frame_count");
             frameTime = config.getInt("frame_time");
             loop = config.optBoolean("loop", true);
@@ -30,7 +42,7 @@ public class AnimatedTexture {
                 frames[i] = fullImage.getSubimage(0, i * frameHeight, frameWidth, frameHeight);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorLogger.log("Failed to load animated texture: " + texturePath + " with config: " + configPath, e);
         }
     }
     public AnimatedTexture(String textureName) {

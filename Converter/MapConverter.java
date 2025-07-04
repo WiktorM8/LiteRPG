@@ -1,3 +1,5 @@
+import Game.World.Enum.BlockType;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.Color;
@@ -10,11 +12,10 @@ public class MapConverter {
     private static final Map<Integer, Integer> COLOR_TO_BLOCK_ID = new HashMap<>();
 
     static {
-        COLOR_TO_BLOCK_ID.put(new Color(0, 255, 255).getRGB(), 0); // Sky
-        COLOR_TO_BLOCK_ID.put(new Color(0, 0, 128).getRGB(), 1);   // Water
-        COLOR_TO_BLOCK_ID.put(new Color(255, 255, 0).getRGB(), 3); // Wheat
-        COLOR_TO_BLOCK_ID.put(new Color(139, 69, 19).getRGB(), 4); // Stone Path
-        COLOR_TO_BLOCK_ID.put(new Color(64, 64, 64).getRGB(), 5);  // Stone Wall
+        for (BlockType block : BlockType.values()) {
+            Color color = block.getColor().toAWTColor();
+            COLOR_TO_BLOCK_ID.put(color.getRGB(), block.getId());
+        }
     }
 
     public static void main(String[] args) throws IOException {

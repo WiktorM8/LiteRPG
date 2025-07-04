@@ -1,7 +1,9 @@
-package Game.Event.Listener;
+package Game.Event.Listener.GamePanel;
 
+import Game.Camera.WorldCamera;
+import Game.Entity.Player;
 import Game.GameManager;
-import Game.World.Position;
+import Game.World.Model.Position;
 
 import java.awt.event.*;
 
@@ -40,10 +42,14 @@ public class GamePanelKeyListener implements KeyListener, MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1) {
+            WorldCamera camera = gameManager.getGame().getCamera();
+
             int pixelX = e.getX() - tileCenterOffset;
             int pixelY = e.getY() - tileCenterOffset;
+            int playerX = (int) camera.getPosition().getX() + pixelX;
+            int playerY = (int) camera.getPosition().getY() + pixelY;
 
-            Position position = new Position(pixelX, pixelY);
+            Position position = new Position(playerX, playerY);
             gameManager.setPlayerMovement(position);
         }
     }

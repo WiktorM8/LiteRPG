@@ -1,26 +1,31 @@
-package Entity;
+package Game.Entity;
 
-import Game.World.Enum.Direction;
-import Game.World.Position;
+import Game.GameManager;
+import Game.World.Enum.DirectionType;
+import Game.World.Enum.EntityType;
+import Game.World.Model.Position;
 
 import static java.lang.Math.abs;
 
 public class Player extends Entity {
-    private static final int DEFAULT_X = 100;
-    private static final int DEFAULT_Y = 100;
+    private static final int DEFAULT_X = 0;
+    private static final int DEFAULT_Y = 0;
     private static final int DEFAULT_STRENGTH = 10;
     private static final int DEFAULT_HEALTH = 100;
     private static final int DEFAULT_SPEED = 4;
 
+    private GameManager gameManager;
     private Position movementPosition;
 
-    public Player() {
+    public Player(GameManager gameManager) {
         super(
+            EntityType.PLAYER,
             new Position(DEFAULT_X, DEFAULT_Y),
             DEFAULT_STRENGTH,
             DEFAULT_HEALTH,
             DEFAULT_SPEED
         );
+        this.gameManager = gameManager;
         movementPosition = new Position(DEFAULT_X, DEFAULT_Y);
     }
 
@@ -32,14 +37,6 @@ public class Player extends Entity {
     }
     public Position getPlayerMovementPosition() {
         return movementPosition;
-    }
-
-    private void initializePlayer() {
-        this.position =
-        this.movementPosition = new Position(DEFAULT_X, DEFAULT_Y);
-        this.strength = DEFAULT_STRENGTH;
-        this.health = DEFAULT_HEALTH;
-        this.speed = DEFAULT_SPEED;
     }
 
     private void move() {
@@ -58,17 +55,24 @@ public class Player extends Entity {
             }
 
             if (abs(deltaX) > abs(deltaY)) {
-                direction = deltaX > 0 ? Direction.RIGHT : Direction.LEFT;
+                direction = deltaX > 0 ? DirectionType.RIGHT : DirectionType.LEFT;
             } else {
-                direction = deltaY > 0 ? Direction.DOWN : Direction.UP;
+                direction = deltaY > 0 ? DirectionType.DOWN : DirectionType.UP;
             }
         } else {
-            direction = Direction.NONE; // No movement, reset direction
+            direction = DirectionType.NONE; // No movement, reset direction
         }
     }
 
     @Override
     public void update() {
         move();
+    }
+
+    public void setGameManager(GameManager gameManager) {
+        this.gameManager = gameManager;
+    }
+    public GameManager getGameManager() {
+        return gameManager;
     }
 }

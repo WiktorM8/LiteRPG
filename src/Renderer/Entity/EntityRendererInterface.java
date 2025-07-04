@@ -1,6 +1,6 @@
-package Renderer;
+package Renderer.Entity;
 
-import Entity.Entity;
+import Game.Entity.Entity;
 
 import java.awt.*;
 

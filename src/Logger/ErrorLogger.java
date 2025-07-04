@@ -1,18 +1,32 @@
 package Logger;
 
+import java.io.*;
+import java.nio.file.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class ErrorLogger {
-    private String errorLogFilePath = "../../log/error_log.txt";
+    private static final String LOG_DIR = "logs";
+    private static final String LOG_FILE = "errors.log";
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd H:mm:ss");
 
-    public ErrorLogger() {
-        // Initialize the error logger, e.g., set up file writer or other resources
-    }
+    public static void log(String message, Throwable throwable) {
+        try {
+            Path logDirPath = Paths.get(LOG_DIR);
+            if (!Files.exists(logDirPath)) {
+                Files.createDirectories(logDirPath);
+            }
 
-    public void logError(String message, Exception exception) {
-        // Log the error message to the specified file
-        try (java.io.FileWriter writer = new java.io.FileWriter(errorLogFilePath, true)) {
-            writer.write(message + ": " + exception.getMessage() + "\n");
-        } catch (java.io.IOException e) {
-            e.printStackTrace();
+            Path logFilePath = logDirPath.resolve(LOG_FILE);
+
+            String date = LocalDateTime.now().format(DATE_FORMAT);
+            String logEntry = date + " | " + throwable.getClass() + " | " + throwable.getMessage() + " | " + message + System.lineSeparator();
+
+            Files.write(logFilePath, logEntry.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+
+        } catch (IOException e) {
+            System.err.println("Nie udało się zapisać błędu do logu: " + e.getMessage());
         }
     }
 }
+

@@ -1,4 +1,4 @@
-package Game.World;
+package Game.World.Model;
 
 public class Position {
     private double x;
@@ -22,5 +22,13 @@ public class Position {
     }
     public boolean isPositionSame(Position pos) {
         return x == pos.getX() && y == pos.getY();
+    }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 }

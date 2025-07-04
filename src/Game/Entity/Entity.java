@@ -1,21 +1,24 @@
-package Entity;
+package Game.Entity;
 
-import Game.World.Enum.Direction;
-import Game.World.Position;
+import Game.World.Enum.DirectionType;
+import Game.World.Enum.EntityType;
+import Game.World.Model.Position;
 import Renderer.AnimationState;
 
 public abstract class Entity {
+    protected final EntityType entityType;
     protected AnimationState animationState;
     protected Position position;
-    protected Direction direction;
+    protected DirectionType direction;
     protected double strength;
     protected double health;
     protected double speed;
 
-    public Entity(Position position, double strength, double health, double speed) {
+    public Entity(EntityType entityType, Position position, double strength, double health, double speed) {
+        this.entityType = entityType;
         this.animationState = new AnimationState();
         this.position = position;
-        this.direction = Direction.NONE;
+        this.direction = DirectionType.NONE;
         this.strength = strength;
         this.health = health;
         this.speed = speed;
@@ -35,10 +38,10 @@ public abstract class Entity {
     public void setPosition(Position position) {
         this.position = position;
     }
-    public void setDirection(Direction direction) {
+    public void setDirection(DirectionType direction) {
         this.direction = direction;
     }
-    public Direction getDirection() {
+    public DirectionType getDirection() {
         return direction;
     }
     public Position getPosition() {

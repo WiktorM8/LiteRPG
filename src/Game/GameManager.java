@@ -1,9 +1,9 @@
 package Game;
 
-import Entity.Player;
-import Game.Event.Listener.GamePanelKeyListener;
-import Game.World.Position;
-import Renderer.PlayerRenderer;
+import Game.Entity.Player;
+import Game.Event.Listener.GamePanel.GamePanelKeyListener;
+import Game.World.Model.Position;
+import Renderer.Entity.PlayerRenderer;
 import Renderer.RenderSystem;
 import Screen.Window.MainWindow;
 import Screen.Panel.GamePanel;
@@ -36,8 +36,8 @@ public final class GameManager {
     }
 
     public RenderSystem getRenderSystem() {
-        RenderSystem renderSystem = new RenderSystem();
-        PlayerRenderer playerRenderer = new PlayerRenderer(scaleFactor);
+        RenderSystem renderSystem = new RenderSystem(tileSize, scaleFactor);
+        PlayerRenderer playerRenderer = new PlayerRenderer(renderSystem);
         renderSystem.registerRenderer(Player.class, playerRenderer);
 
         return renderSystem;
@@ -67,11 +67,16 @@ public final class GameManager {
         if (game == null) {
             return; // Ensure the game and player are initialized before rendering
         }
+        renderSystem.render(g2d, game.getWorld());
         renderSystem.render(g2d, game.getPlayer());
     }
 
     public void setPlayerMovement(Position position) {
         game.setPlayerMovementPosition(position);
+    }
+
+    public Game getGame() {
+        return game;
     }
 
 }

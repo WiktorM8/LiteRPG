@@ -1,13 +1,12 @@
 package Game;
 
-import Entity.Player;
+import Game.Camera.WorldCamera;
+import Game.Entity.Player;
 import Game.World.BaseWorld;
-import Game.World.Position;
-import Game.World.SunnyFields;
+import Game.World.Enum.WorldType;
+import Game.World.Loader.WorldLoader;
+import Game.World.Model.Position;
 import Logger.ErrorLogger;
-import Renderer.RenderSystem;
-
-import java.awt.*;
 
 public class Game implements Runnable {
     private final Thread gameThread; // Thread for the game loop
@@ -17,6 +16,7 @@ public class Game implements Runnable {
 
     // Game state variables
     private BaseWorld world; // The game world
+    private WorldCamera camera; // The camera for the game world
     private Player player; // The player entity
 
     // Game settings
@@ -28,13 +28,16 @@ public class Game implements Runnable {
         this.gameManager = gameManager;
         gameThread = new Thread(this);
         running = true;
+        player = new Player(gameManager); // Initialize the player entity
+        world = WorldLoader.loadWorld(WorldType.SUNNY_FIELDS, 0, player, gameManager);
+        camera = new WorldCamera(gameManager);
         gameThread.start();
-        player = new Player(); // Initialize the player entity
-        world = new SunnyFields(player); // Initialize the game world
     }
 
     private void update() {
         player.update();
+        camera.focusEntity(player);
+
     }
 
     private void render() {
@@ -57,6 +60,10 @@ public class Game implements Runnable {
     public void run() {
         long previousTime = System.nanoTime();
         double delta = 0;
+        int fps = 0;
+        long timer = System.currentTimeMillis();
+
+        camera.focusEntity(player);
 
         while (running) {
             try {
@@ -68,12 +75,19 @@ public class Game implements Runnable {
                     delta--;
                     update();
                     render();
+                    fps++;
+                }
+
+                if (System.currentTimeMillis() - timer >= 1000) {
+                    System.out.println("FPS: " + fps);
+                    fps = 0;
+                    timer += 1000;
                 }
 
                 Thread.sleep(1); // To prevent excessive CPU usage
-            } catch (InterruptedException e) {
-                ErrorLogger logger = new ErrorLogger();
-                logger.logError("Game thread interrupted", e);
+            } catch (Exception e) {
+                ErrorLogger.log("Game loop error", e);
+                running = false; // Stop the game loop on error
             }
         }
     }
@@ -89,5 +103,11 @@ public class Game implements Runnable {
     }
     public BaseWorld getWorld() {
         return world;
+    }
+    public void setCamera(WorldCamera camera) {
+        this.camera = camera;
+    }
+    public WorldCamera getCamera() {
+        return camera;
     }
 }

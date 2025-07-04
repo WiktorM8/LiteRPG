@@ -1,6 +1,6 @@
 package Game.World.Enum;
 
-public enum Direction {
+public enum DirectionType {
     NONE("NONE"),
     UP("UP"),
     DOWN("DOWN"),
@@ -9,7 +9,7 @@ public enum Direction {
 
     public final String value;
 
-    private Direction(String value) {
+    private DirectionType(String value) {
         this.value = value;
     }
 
@@ -17,7 +17,7 @@ public enum Direction {
         return value;
     }
 
-    public static Direction fromString(String direction) {
+    public static DirectionType fromString(String direction) {
         return switch (direction.toUpperCase()) {
             case "NONE" -> NONE;
             case "UP" -> UP;

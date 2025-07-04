@@ -36,8 +36,8 @@ public class WorldRenderer extends BaseWorldRenderer {
         int endTileY = Math.min((cameraY + screenHeight) / tileSize + 1, worldHeight);
 
 
-        for (int y = startTileY; y < endTileY; y++) {
-            for (int x = startTileX; x < endTileX; x++) {
+        for (int y = startTileY; y <= endTileY; y++) {
+            for (int x = startTileX; x <= endTileX; x++) {
                 Tile tile = world.getTile(x, y);
                 if (tile != null) {
                     AnimatedTexture texture = renderSystem.getBlockTexture(tile.getBlockType().getTexture());

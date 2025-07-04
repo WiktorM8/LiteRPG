@@ -63,7 +63,7 @@ public abstract class BaseWorld {
         if (x < 0 || x >= width || y < 0 || y >= height) {
             return null;
         }
-        return map[x][y];
+        return map[y][x];
     }
     public Player getPlayer() {
         return gameManager.getGame().getPlayer();

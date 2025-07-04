@@ -48,8 +48,12 @@ public class WorldLoader {
                 for (int x = 0; x < width; x++) {
                     int blockId = Integer.parseInt(rawMap.get(y * width + x).toString());
                     BlockType blockType = BlockType.getById(blockId);
-                    mapData[x][y] = new Tile(blockType);
+                    mapData[y][x] = new Tile(blockType);
                 }
+            }
+
+            for (int i = 0; i < width; i++) {
+                System.out.println(mapData[i][20].getBlockType().getName());
             }
 
             player.setPosition(spawnX * gameManager.tileSize, spawnY * gameManager.tileSize); // Set player position to spawn point

@@ -1,13 +1,14 @@
-package Game.Entity;
+package Game.Entity.Mob;
 
 import Game.GameManager;
 import Game.World.Enum.DirectionType;
-import Game.World.Enum.EntityType;
+import Game.World.Enum.Entity.EntityType;
+import Game.World.Enum.Entity.MobType;
 import Game.World.Model.Position;
 
 import static java.lang.Math.abs;
 
-public class Player extends Entity {
+public class Player extends Mob {
     private static final int DEFAULT_X = 0;
     private static final int DEFAULT_Y = 0;
     private static final int DEFAULT_STRENGTH = 10;
@@ -19,7 +20,7 @@ public class Player extends Entity {
 
     public Player(GameManager gameManager) {
         super(
-            EntityType.PLAYER,
+            MobType.PLAYER,
             new Position(DEFAULT_X, DEFAULT_Y),
             DEFAULT_STRENGTH,
             DEFAULT_HEALTH,

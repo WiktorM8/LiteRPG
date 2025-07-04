@@ -1,6 +1,6 @@
 package Game.World;
 
-import Game.Entity.Player;
+import Game.Entity.Mob.Player;
 import Game.GameManager;
 import Game.World.Model.Tile;
 

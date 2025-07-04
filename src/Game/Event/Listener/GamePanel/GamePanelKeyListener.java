@@ -1,7 +1,6 @@
 package Game.Event.Listener.GamePanel;
 
 import Game.Camera.WorldCamera;
-import Game.Entity.Player;
 import Game.GameManager;
 import Game.World.Model.Position;
 

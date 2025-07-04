@@ -1,6 +1,6 @@
 package Game;
 
-import Game.Entity.Player;
+import Game.Entity.Mob.Player;
 import Game.Event.Listener.GamePanel.GamePanelKeyListener;
 import Game.World.Model.Position;
 import Renderer.Entity.PlayerRenderer;

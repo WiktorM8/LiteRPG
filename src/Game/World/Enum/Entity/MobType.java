@@ -1,10 +1,10 @@
-package Game.World.Enum;
+package Game.World.Enum.Entity;
 
 import Framework.Misc.Color;
 import Renderer.Texturer.Enum.EntityTexture;
 import Renderer.Texturer.Model.EntityTextures;
 
-public enum EntityType {
+public enum MobType {
     PLAYER("Player", "Player", new EntityTextures(
             EntityTexture.PLAYER_STANDING,
             EntityTexture.PLAYER_WALKING_UP,
@@ -18,7 +18,7 @@ public enum EntityType {
     private final EntityTextures texture;
     private final Color color;
 
-    EntityType(String type, String name, EntityTextures texture, Color color) {
+    MobType(String type, String name, EntityTextures texture, Color color) {
         this.type = type;
         this.name = name;
         this.texture = texture;

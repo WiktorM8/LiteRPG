@@ -1,7 +1,7 @@
 package Game;
 
 import Game.Camera.WorldCamera;
-import Game.Entity.Player;
+import Game.Entity.Mob.Player;
 import Game.World.BaseWorld;
 import Game.World.Enum.WorldType;
 import Game.World.Loader.WorldLoader;

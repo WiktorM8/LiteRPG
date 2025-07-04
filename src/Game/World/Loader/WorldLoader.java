@@ -1,6 +1,6 @@
 package Game.World.Loader;
 
-import Game.Entity.Player;
+import Game.Entity.Mob.Player;
 import Game.GameManager;
 import Game.World.BaseWorld;
 import Game.World.Enum.BlockType;

@@ -1,14 +1,14 @@
 package Renderer.Entity;
 
 import Game.Camera.WorldCamera;
-import Game.Entity.Player;
+import Game.Entity.Mob.Player;
 import Game.World.Enum.DirectionType;
-import Game.World.Enum.EntityType;
+import Game.World.Enum.Entity.EntityType;
+import Game.World.Enum.Entity.MobType;
 import Game.World.Model.Position;
 import Renderer.AnimatedTexture;
 import Renderer.RenderSystem;
 import Renderer.Texturer.Model.EntityTextures;
-import Renderer.Utils.ImageUtils;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -22,7 +22,7 @@ public class PlayerRenderer extends BaseEntityRenderer<Player> {
 
     public PlayerRenderer(RenderSystem renderSystem) {
         super(renderSystem);
-        EntityTextures textures = EntityType.PLAYER.getTexture();
+        EntityTextures textures = MobType.PLAYER.getTexture();
         this.standingTexture = renderSystem.getEntityTexture(textures.getStandingTexture());
         this.walkingDownTexture = renderSystem.getEntityTexture(textures.getWalkingDownTexture());
         this.walkingUpTexture = renderSystem.getEntityTexture(textures.getWalkingUpTexture());

@@ -21,8 +21,8 @@ public class RenderSystem {
     private int scaleFactor;
 
     public RenderSystem(int tileSize, int scaleFactor) {
-        entityTextures = EntityTextureLoader.loadTextures();
-        blockTextures = BlockTextureLoader.loadTextures();
+        entityTextures = EntityTextureLoader.loadTextures(scaleFactor);
+        blockTextures = BlockTextureLoader.loadTextures(scaleFactor);
 
         worldRenderer = new WorldRenderer(this);
         this.tileSize = tileSize;

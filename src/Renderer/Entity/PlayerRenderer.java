@@ -42,13 +42,12 @@ public class PlayerRenderer extends BaseEntityRenderer<Player> {
             default -> throw new IllegalStateException("Unexpected value: " + playerDirection);
         };
         BufferedImage frame = currentTexture.getFrame(player.getAnimationState().getCurrentFrameIndex(currentTexture));
-        BufferedImage scaledFrame = ImageUtils.scaleImage(frame, renderSystem.getScaleFactor());
         Position pos = player.getPosition();
 
         WorldCamera camera = player.getGameManager().getGame().getCamera();
 
         g2d.drawImage(
-                scaledFrame,
+                frame,
                 (int) (pos.getX() - camera.getPosition().getX()),
                 (int) (pos.getY() - camera.getPosition().getY()),
                 null

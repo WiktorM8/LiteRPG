@@ -7,11 +7,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class EntityTextureLoader {
-    public static Map<EntityTexture, AnimatedTexture> loadTextures() {
+    public static Map<EntityTexture, AnimatedTexture> loadTextures(int scaleFactor) {
         Map<EntityTexture, AnimatedTexture> textures = new HashMap<>();
 
         for (EntityTexture texture : EntityTexture.values()) {
-            textures.put(texture, new AnimatedTexture(texture.getTexturePath()));
+            textures.put(texture, new AnimatedTexture(texture.getTexturePath(), scaleFactor));
         }
 
         return textures;

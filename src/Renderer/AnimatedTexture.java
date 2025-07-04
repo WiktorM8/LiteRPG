@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import Logger.ErrorLogger;
+import Renderer.Utils.ImageUtils;
 import org.json.JSONObject;
 
 public class AnimatedTexture {
@@ -19,7 +20,7 @@ public class AnimatedTexture {
     private int frameTime;
     private boolean loop;
 
-    public AnimatedTexture(String texturePath, String configPath) {
+    public AnimatedTexture(String texturePath, String configPath, int scaleFactor) {
         try {
             JSONObject config;
             Path path = Paths.get(configPath);
@@ -39,14 +40,15 @@ public class AnimatedTexture {
 
             frames = new BufferedImage[frameCount];
             for (int i = 0; i < frameCount; i++) {
-                frames[i] = fullImage.getSubimage(0, i * frameHeight, frameWidth, frameHeight);
+                BufferedImage subimage = fullImage.getSubimage(0, i * frameHeight, frameWidth, frameHeight);
+                frames[i] = ImageUtils.scaleImage(subimage, scaleFactor);
             }
         } catch (IOException e) {
             ErrorLogger.log("Failed to load animated texture: " + texturePath + " with config: " + configPath, e);
         }
     }
-    public AnimatedTexture(String textureName) {
-        this("assets/textures/" + textureName + ".png", "assets/textures/" + textureName + ".json");
+    public AnimatedTexture(String textureName, int scaleFactor) {
+        this("assets/textures/" + textureName + ".png", "assets/textures/" + textureName + ".json", scaleFactor);
     }
 
     public BufferedImage getFrame(int index) {

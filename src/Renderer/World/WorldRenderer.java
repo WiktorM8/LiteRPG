@@ -42,12 +42,11 @@ public class WorldRenderer extends BaseWorldRenderer {
                 if (tile != null) {
                     AnimatedTexture texture = renderSystem.getBlockTexture(tile.getBlockType().getTexture());
                     BufferedImage frame = texture.getFrame(0);
-                    BufferedImage scaled = ImageUtils.scaleImage(frame, scaleFactor);
 
                     int screenX = x * tileSize - cameraX;
                     int screenY = y * tileSize - cameraY;
 
-                    g2d.drawImage(scaled, screenX, screenY, null);
+                    g2d.drawImage(frame, screenX, screenY, null);
                 }
             }
         }

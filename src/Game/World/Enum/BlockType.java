@@ -9,11 +9,11 @@ public enum BlockType {
     WATER("WATER", "Water", SolidType.WATER, BlockTexture.WATER,
             new Color(0, 0, 128)),
     GRASS("GRASS", "Grass", SolidType.NOT_SOLID, BlockTexture.GRASS,
-            new Color(64, 180, 54)),
+            new Color(66, 185, 96)),
     WHEAT("WHEAT", "Wheat", SolidType.HIDING, BlockTexture.WHEAT,
-            new Color(255, 255, 0)),
-    STONE_PATH("STONE_PATH", "Stone Path",  SolidType.NOT_SOLID, BlockTexture.STONE_PATH,
-            new Color(139, 69, 19)),
+            new Color(255, 255, 100)),
+    PATH("PATH", "Stone Path",  SolidType.NOT_SOLID, BlockTexture.PATH,
+            new Color(171, 108, 64)),
     STONE_WALL( "STONE_WALL", "Stone Wall", SolidType.SOLID, BlockTexture.STONE_WALL,
             new Color(64, 64, 64));
 

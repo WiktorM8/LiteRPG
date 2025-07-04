@@ -8,6 +8,7 @@ public enum WorldType {
             "A bright and cheerful world filled with beautiful wheat fields.",
             new WorldVariations(new String[] {
                     "/sunny_fields/world_0",
+                    "/sunny_fields/world_1",
             })
     );
 

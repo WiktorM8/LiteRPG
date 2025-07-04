@@ -29,7 +29,7 @@ public class Game implements Runnable {
         gameThread = new Thread(this);
         running = true;
         player = new Player(gameManager); // Initialize the player entity
-        world = WorldLoader.loadWorld(WorldType.SUNNY_FIELDS, 0, player, gameManager);
+        world = WorldLoader.loadWorld(WorldType.SUNNY_FIELDS, 1, player, gameManager);
         camera = new WorldCamera(gameManager);
         gameThread.start();
     }

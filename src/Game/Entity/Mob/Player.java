@@ -14,10 +14,13 @@ public class Player extends Mob {
     private static final int DEFAULT_Y = 0;
     private static final int DEFAULT_STRENGTH = 10;
     private static final int DEFAULT_HEALTH = 100;
+    private static final int DEFAULT_MANA = 100;
     private static final int DEFAULT_SPEED = 4;
 
     private GameManager gameManager;
     private Position movementPosition;
+    private double mana;
+    private double maxMana;
 
     public Player(GameManager gameManager, BaseWorld world) {
         super(
@@ -30,6 +33,8 @@ public class Player extends Mob {
         );
         this.gameManager = gameManager;
         movementPosition = new Position(DEFAULT_X, DEFAULT_Y);
+        this.mana = DEFAULT_MANA;
+        this.maxMana = DEFAULT_MANA;
     }
 
     public void setPlayerMovementPosition(double x, double y) {
@@ -40,6 +45,18 @@ public class Player extends Mob {
     }
     public Position getPlayerMovementPosition() {
         return movementPosition;
+    }
+    public void setMana(double mana) {
+        this.mana = mana;
+    }
+    public double getMana() {
+        return mana;
+    }
+    public void setMaxMana(double maxMana) {
+        this.maxMana = maxMana;
+    }
+    public double getMaxMana() {
+        return maxMana;
     }
 
     private void move() {

@@ -19,12 +19,12 @@ public final class GameManager {
 
     // Tile settings
     public final int baseTileSize = 16; // Base tile size in pixels
-    public final int scaleFactor = 4; // Scale factor for the tile size
+    public final int scaleFactor = 3; // Scale factor for the tile size
     public final int tileSize = baseTileSize * scaleFactor; // Tile size in pixels
 
     // Game view settings
-    public final int gameTileWidth = 24; // Number of tiles in width
-    public final int gameTileHeight = 14; // Number of tiles in height
+    public final int gameTileWidth = 22; // Number of tiles in width
+    public final int gameTileHeight = 16; // Number of tiles in height
     public final int gameWidth = gameTileWidth * tileSize; // Game width in pixels
     public final int gameHeight = gameTileHeight * tileSize;// Game height in pixels
 

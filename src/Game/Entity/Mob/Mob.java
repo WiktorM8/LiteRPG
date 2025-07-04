@@ -12,7 +12,7 @@ public abstract class Mob extends Entity {
     protected DirectionType direction;
     protected MobType mobType;
     protected double strength;
-    protected double health;
+    protected double health, maxHealth;
     protected double speed;
 
     public Mob(MobType mobType, BaseWorld world, Position position, double strength, double health, double speed) {
@@ -21,6 +21,7 @@ public abstract class Mob extends Entity {
         this.mobType = mobType;
         this.strength = strength;
         this.health = health;
+        this.maxHealth = health;
         this.speed = speed;
     }
 
@@ -44,6 +45,12 @@ public abstract class Mob extends Entity {
     }
     public double getHealth() {
         return health;
+    }
+    public void setMaxHealth(double maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+    public double getMaxHealth() {
+        return maxHealth;
     }
     public void setSpeed(double speed) {
         this.speed = speed;

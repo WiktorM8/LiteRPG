@@ -8,8 +8,8 @@ import Renderer.RenderSystem;
 import java.awt.*;
 
 public class MinimapRenderer extends BaseGUIRenderer {
-    private static final int MINIMAP_WIDTH = 65;
-    private static final int MINIMAP_HEIGHT = 65;
+    private static final int MINIMAP_WIDTH = 41;
+    private static final int MINIMAP_HEIGHT = 41;
     private static final int MINIMAP_SCALE = 4;
     private static final int MINIMAP_MARGIN = 40;
 
@@ -27,7 +27,7 @@ public class MinimapRenderer extends BaseGUIRenderer {
 
         // Draw the minimap background
         drawMinimapBorder(g2d, minimapX, minimapY);
-        g2d.setColor(Color.GRAY);//BlockType.SKY.getColor().toAWTColor());
+        g2d.setColor(BlockType.SKY.getColor().toAWTColor());
         g2d.fillRect(minimapX, minimapY, MINIMAP_WIDTH * MINIMAP_SCALE, MINIMAP_HEIGHT * MINIMAP_SCALE);
         drawMinimapContent(g2d, gameManager, minimapX, minimapY);
     }

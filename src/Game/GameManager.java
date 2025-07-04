@@ -19,17 +19,17 @@ public final class GameManager {
 
     // Tile settings
     public final int baseTileSize = 16; // Base tile size in pixels
-    public final int scaleFactor = 3; // Scale factor for the tile size
+    public final int scaleFactor = 4; // Scale factor for the tile size
     public final int tileSize = baseTileSize * scaleFactor; // Tile size in pixels
 
     // Game view settings
-    public final int gameTileWidth = 16; // Number of tiles in width
-    public final int gameTileHeight = 12; // Number of tiles in height
+    public final int gameTileWidth = 24; // Number of tiles in width
+    public final int gameTileHeight = 14; // Number of tiles in height
     public final int gameWidth = gameTileWidth * tileSize; // Game width in pixels
     public final int gameHeight = gameTileHeight * tileSize;// Game height in pixels
 
     public GameManager() {
-        mainWindow = new MainWindow();
+        mainWindow = new MainWindow(this);
         mainWindow.display();
         gamePanelKeyListener = new GamePanelKeyListener(this);
         renderSystem = getRenderSystem();
@@ -69,6 +69,7 @@ public final class GameManager {
         }
         renderSystem.render(g2d, game.getWorld());
         renderSystem.render(g2d, game.getPlayer());
+        renderSystem.renderGUI(g2d, this);
     }
 
     public void setPlayerMovement(Position position) {

@@ -5,7 +5,6 @@ import Game.World.Model.Position;
 import Game.World.Model.Tile;
 import Renderer.AnimatedTexture;
 import Renderer.RenderSystem;
-import Renderer.Utils.ImageUtils;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

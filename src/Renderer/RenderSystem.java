@@ -4,8 +4,10 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 import Game.Entity.Entity;
+import Game.GameManager;
 import Game.World.BaseWorld;
 import Renderer.Entity.EntityRendererInterface;
+import Renderer.GUI.GUIRenderer;
 import Renderer.Texturer.Enum.BlockTexture;
 import Renderer.Texturer.Enum.EntityTexture;
 import Renderer.Texturer.Loader.BlockTextureLoader;
@@ -15,6 +17,7 @@ import Renderer.World.WorldRenderer;
 public class RenderSystem {
     private final Map<Class<?>, EntityRendererInterface<?>> entityRenderers = new HashMap<>();
     private final WorldRenderer worldRenderer;
+    private final GUIRenderer guiRenderer;
     private final Map<EntityTexture, AnimatedTexture> entityTextures;
     private final Map<BlockTexture, AnimatedTexture> blockTextures;
     private int tileSize;
@@ -25,6 +28,7 @@ public class RenderSystem {
         blockTextures = BlockTextureLoader.loadTextures(scaleFactor);
 
         worldRenderer = new WorldRenderer(this);
+        guiRenderer = new GUIRenderer(this);
         this.tileSize = tileSize;
         this.scaleFactor = scaleFactor;
     }
@@ -43,6 +47,11 @@ public class RenderSystem {
     public void render(Graphics2D g2d, BaseWorld world) {
         if (worldRenderer != null) {
             worldRenderer.render(g2d, world);
+        }
+    }
+    public void renderGUI(Graphics2D g2d, GameManager gameManager) {
+        if (guiRenderer != null) {
+            guiRenderer.render(g2d, gameManager);
         }
     }
 

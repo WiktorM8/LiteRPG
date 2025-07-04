@@ -1,15 +1,10 @@
 package Renderer.World;
 
+import Renderer.BaseRenderer;
 import Renderer.RenderSystem;
 
-public abstract class BaseWorldRenderer {
-    protected final RenderSystem renderSystem;
-
+public abstract class BaseWorldRenderer extends BaseRenderer {
     public BaseWorldRenderer(RenderSystem renderSystem) {
-        this.renderSystem = renderSystem;
-    }
-
-    public RenderSystem getRenderSystem() {
-        return renderSystem;
+        super(renderSystem);
     }
 }

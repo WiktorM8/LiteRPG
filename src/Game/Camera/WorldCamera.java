@@ -26,7 +26,7 @@ public class WorldCamera {
 
         double camX = Math.max(0, Math.min(targetX - screenWidth / 2.0 + halfTileSize, worldWidthPx - screenWidth - tileSize / 2.0));
         // I have no idea why division by 4.0 works instead of 2.0, but it does
-        double camY = Math.max(0, Math.min(targetY - screenHeight / 2.0 + halfTileSize, worldHeightPx - screenHeight + tileSize / 4.0));
+        double camY = Math.max(0, Math.min(targetY - screenHeight / 2.0 + 3/4.0*tileSize, worldHeightPx - screenHeight + tileSize / 4.0));
 
         position.setX(camX);
         position.setY(camY);

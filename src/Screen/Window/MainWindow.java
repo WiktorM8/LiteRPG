@@ -1,17 +1,19 @@
 package Screen.Window;
 
+import Game.GameManager;
+
 import javax.swing.*;
 
 public class MainWindow {
     private final JFrame window;
 
-    public MainWindow() {
+    public MainWindow(GameManager gameManager) {
         window = new JFrame();
         // Set the default close operation to exit the application when the window is closed
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Prevent the window from being resized
         window.setResizable(false);
-        window.setSize(800, 600);
+        window.setSize(gameManager.gameWidth, gameManager.gameHeight + 20);
         // Don't specify a location of the window center
         window.setLocationRelativeTo(null);
         window.setTitle("Lite RPG");

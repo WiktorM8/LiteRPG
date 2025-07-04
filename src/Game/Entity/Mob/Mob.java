@@ -30,6 +30,9 @@ public abstract class Mob extends Entity {
     public DirectionType getDirection() {
         return direction;
     }
+    public MobType getMobType() {
+        return mobType;
+    }
     public void setStrength(double strength) {
         this.strength = strength;
     }

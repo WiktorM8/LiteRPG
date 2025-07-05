@@ -1,5 +1,8 @@
 package Game.Entity.Mob;
 
+import Framework.Event.Dispatcher.EventBus;
+import Game.Event.Event.Entity.Mob.Player.PlayerMoveEvent;
+import Game.Event.Listener.GamePanel.Entity.Mob.Player.PlayerMoveListener;
 import Game.GameManager;
 import Game.World.BaseWorld;
 import Game.World.Enum.DirectionType;
@@ -42,6 +45,9 @@ public class Player extends Mob {
          * @todo Implement a dynamic experience system
          */
         this.experienceToNextLevel = 100; // Initial experience required for the first level up
+
+        // Register listeners
+        EventBus.addListener(PlayerMoveEvent.class, new PlayerMoveListener(this));
     }
 
     public void setPlayerMovementPosition(double x, double y) {

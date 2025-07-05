@@ -72,10 +72,6 @@ public final class GameManager {
         renderSystem.renderGUI(g2d, this);
     }
 
-    public void setPlayerMovement(Position position) {
-        game.setPlayerMovementPosition(position);
-    }
-
     public Game getGame() {
         return game;
     }

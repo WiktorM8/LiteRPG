@@ -1,12 +1,16 @@
 package Game.Event.Listener.GamePanel;
 
+import Framework.Event.Dispatcher.AbstractEventDispatcher;
+import Framework.Event.Dispatcher.EventBus;
+import Framework.Event.EventInterface;
 import Game.Camera.WorldCamera;
+import Game.Event.Event.Entity.Mob.Player.PlayerMoveEvent;
 import Game.GameManager;
 import Game.World.Model.Position;
 
 import java.awt.event.*;
 
-public class GamePanelKeyListener implements KeyListener, MouseListener {
+public class GamePanelKeyListener extends AbstractEventDispatcher implements KeyListener, MouseListener {
     private final GameManager gameManager;
 
     private final int tileSize;
@@ -49,7 +53,10 @@ public class GamePanelKeyListener implements KeyListener, MouseListener {
             int playerY = (int) camera.getPosition().getY() + pixelY;
 
             Position position = new Position(playerX, playerY);
-            gameManager.setPlayerMovement(position);
+            EventBus.dispatch(new PlayerMoveEvent(position));
+        } else if (e.getButton() == MouseEvent.BUTTON1) {
+            // Handle left mouse button click
+            // For example, you might want to select a tile or interact with an object
         }
     }
 

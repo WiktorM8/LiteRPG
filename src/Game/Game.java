@@ -45,15 +45,6 @@ public class Game implements Runnable {
     }
 
     /**
-     * @param position Position to which the player will move.
-     */
-    public void setPlayerMovementPosition(Position position) {
-        if (player != null) {
-            player.setPlayerMovementPosition(position);
-        }
-    }
-
-    /**
      * Should not be called outside the Game class.
      */
     @Override

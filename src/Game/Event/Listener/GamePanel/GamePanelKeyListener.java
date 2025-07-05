@@ -40,7 +40,7 @@ public class GamePanelKeyListener implements KeyListener, MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (e.getButton() == MouseEvent.BUTTON1) {
+        if (e.getButton() == MouseEvent.BUTTON3) {
             WorldCamera camera = gameManager.getGame().getCamera();
 
             int pixelX = e.getX() - tileCenterOffset;

@@ -6,14 +6,14 @@ import Renderer.RenderSystem;
 import java.awt.*;
 
 public class GUIRenderer extends BaseGUIRenderer {
-    private final HealthAndManaRenderer healthAndManaRenderer;
+    private final StatusBarsRenderer healthAndManaRenderer;
     private final MinimapRenderer minimapRenderer;
 
     public static final int GUI_BAR_HEIGHT = 150;
 
     public GUIRenderer(RenderSystem renderSystem) {
         super(renderSystem);
-        this.healthAndManaRenderer = new HealthAndManaRenderer(renderSystem);
+        this.healthAndManaRenderer = new StatusBarsRenderer(renderSystem);
         this.minimapRenderer = new MinimapRenderer(renderSystem);
     }
 

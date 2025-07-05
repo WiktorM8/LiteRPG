@@ -21,6 +21,8 @@ public class Player extends Mob {
     private Position movementPosition;
     private double mana;
     private double maxMana;
+    private double experience;
+    private double experienceToNextLevel;
 
     public Player(GameManager gameManager, BaseWorld world) {
         super(
@@ -35,6 +37,11 @@ public class Player extends Mob {
         movementPosition = new Position(DEFAULT_X, DEFAULT_Y);
         this.mana = DEFAULT_MANA;
         this.maxMana = DEFAULT_MANA;
+        this.experience = 0;
+        /**
+         * @todo Implement a dynamic experience system
+         */
+        this.experienceToNextLevel = 100; // Initial experience required for the first level up
     }
 
     public void setPlayerMovementPosition(double x, double y) {
@@ -57,6 +64,39 @@ public class Player extends Mob {
     }
     public double getMaxMana() {
         return maxMana;
+    }
+    public void setExperience(double experience) {
+        this.experience = experience;
+        if (this.experience >= experienceToNextLevel) {
+            levelUp();
+        }
+    }
+    public void addExperience(double experience) {
+        this.experience += experience;
+        if (this.experience >= experienceToNextLevel) {
+            levelUp();
+        }
+    }
+    public double getExperience() {
+        return experience;
+    }
+    public void setExperienceToNextLevel(double experienceToNextLevel) {
+        this.experienceToNextLevel = experienceToNextLevel;
+    }
+    public double getExperienceToNextLevel() {
+        return experienceToNextLevel;
+    }
+
+    private void levelUp() {
+        this.experience -= experienceToNextLevel; // Reset experience after leveling up
+        /**
+         * @todo Implement level-up logic
+         */
+        this.maxMana += 10; // Example: increase max mana by 10
+        this.mana = this.maxMana; // Restore mana to max after leveling up
+        this.strength += 5; // Example: increase strength by 5
+        this.maxHealth += 20; // Example: increase health by 20
+        experienceToNextLevel *= 1.2; // Increase the required experience for the next level
     }
 
     private void move() {

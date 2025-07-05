@@ -24,7 +24,7 @@ public class MainMenuPanel extends JPanel {
         add(titleLabel);
         add(Box.createVerticalStrut(60));
 
-        add(createButton("Start Game", e -> startGame()));
+        add(createButton("New Game", e -> newGame()));
         add(Box.createVerticalStrut(20));
         add(createButton("Load Game", e -> loadGame()));
         add(Box.createVerticalStrut(20));
@@ -42,8 +42,8 @@ public class MainMenuPanel extends JPanel {
         return button;
     }
 
-    private void startGame() {
-        gameManager.startGame();
+    private void newGame() {
+        gameManager.newGame();
     }
 
     private void loadGame() {

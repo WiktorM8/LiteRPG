@@ -50,7 +50,7 @@ public final class GameManager {
         mainWindow.addPanel(mainMenuPanel);
     }
 
-    public void startGame() {
+    public void newGame() {
         // Initialize the game panel
         gamePanel = new GamePanel(this);
         gamePanel.setFocusable(true); // Make the game panel focusable to receive key events

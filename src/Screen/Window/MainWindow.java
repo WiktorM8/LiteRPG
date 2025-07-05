@@ -28,6 +28,7 @@ public class MainWindow {
     }
 
     public void addPanel(JPanel panel) {
+        window.getContentPane().removeAll();
         // Add the specified panel to the window
         window.add(panel);
         // Refresh the window to show the new panel

@@ -44,15 +44,15 @@ public class GamePanelKeyListener extends AbstractEventDispatcher implements Key
 
     @Override
     public void mousePressed(MouseEvent e) {
+        WorldCamera camera = gameManager.getGame().getCamera();
+
+        int screenX = e.getX() - tileCenterOffset;
+        int screenY = e.getY() - tileCenterOffset;
+        int worldX = (int) camera.getPosition().getX() + screenX;
+        int worldY = (int) camera.getPosition().getY() + screenY;
+
         if (e.getButton() == MouseEvent.BUTTON3) {
-            WorldCamera camera = gameManager.getGame().getCamera();
-
-            int pixelX = e.getX() - tileCenterOffset;
-            int pixelY = e.getY() - tileCenterOffset;
-            int playerX = (int) camera.getPosition().getX() + pixelX;
-            int playerY = (int) camera.getPosition().getY() + pixelY;
-
-            Position position = new Position(playerX, playerY);
+            Position position = new Position(worldX, worldY);
             EventBus.dispatch(new PlayerMoveEvent(position));
         } else if (e.getButton() == MouseEvent.BUTTON1) {
             // Handle left mouse button click

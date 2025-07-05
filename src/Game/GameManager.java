@@ -2,16 +2,17 @@ package Game;
 
 import Game.Entity.Mob.Player;
 import Game.Event.Listener.GamePanel.GamePanelKeyListener;
-import Game.World.Model.Position;
 import Renderer.Entity.PlayerRenderer;
 import Renderer.RenderSystem;
 import Screen.Window.MainWindow;
 import Screen.Panel.GamePanel;
+import Screen.Panel.MainMenuPanel;
 
 import java.awt.*;
 
 public final class GameManager {
     private MainWindow mainWindow;
+    private MainMenuPanel mainMenuPanel;
     private GamePanel gamePanel;
     private Game game;
     private GamePanelKeyListener gamePanelKeyListener;
@@ -41,6 +42,12 @@ public final class GameManager {
         renderSystem.registerRenderer(Player.class, playerRenderer);
 
         return renderSystem;
+    }
+
+    public void mainMenu() {
+        mainMenuPanel = new MainMenuPanel(this);
+        mainMenuPanel.setFocusable(true);
+        mainWindow.addPanel(mainMenuPanel);
     }
 
     public void startGame() {

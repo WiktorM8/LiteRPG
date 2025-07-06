@@ -14,7 +14,7 @@ public abstract class Mob extends Entity {
     protected double strength;
     protected double health, maxHealth;
     protected double speed;
-    protected double level;
+    protected int level;
 
     public Mob(MobType mobType, BaseWorld world, Position position, int level, double strength, double health, double speed) {
         super(EntityType.MOB, world, position);
@@ -60,13 +60,13 @@ public abstract class Mob extends Entity {
     public double getSpeed() {
         return speed;
     }
-    public void setLevel(double level) {
+    public void setLevel(int level) {
         this.level = level;
     }
-    public void increaseLevel(double increment) {
+    public void increaseLevel(int increment) {
         this.level += increment;
     }
-    public double getLevel() {
+    public int getLevel() {
         return level;
     }
 

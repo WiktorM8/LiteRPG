@@ -5,12 +5,14 @@ public class LevelInfo {
     private final double strength;
     private final double health;
     private final double speed;
+    private final double viewingDistance;
 
-    public LevelInfo(int level, double strength, double health, double speed) {
+    public LevelInfo(int level, double strength, double health, double speed, double viewingDistance) {
         this.level = level;
         this.strength = strength;
         this.health = health;
         this.speed = speed;
+        this.viewingDistance = viewingDistance;
     }
 
     public int getLevel() {
@@ -27,5 +29,9 @@ public class LevelInfo {
 
     public double getSpeed() {
         return speed;
+    }
+
+    public double getViewingDistance() {
+        return viewingDistance;
     }
 }

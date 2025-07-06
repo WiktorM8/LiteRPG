@@ -41,7 +41,7 @@ public class RenderSystem {
 
     public void render(Graphics2D g2d, Mob mob, WorldCamera camera) {
         if (mobRenderer != null) {
-            mobRenderer.render(g2d, mob, camera);
+            mobRenderer.render(g2d, mob, camera, tileSize);
         }
     }
     public void render(Graphics2D g2d, BaseWorld world) {

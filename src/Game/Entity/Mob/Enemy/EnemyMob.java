@@ -7,26 +7,26 @@ import Game.World.Enum.Entity.MobType;
 import Game.World.Model.Position;
 
 public abstract class EnemyMob extends Mob {
-    private int viewingDistance;
+    private double viewingDistance;
 
     public EnemyMob(
             MobType mobType,
             BaseWorld world, Position position,
             int level,
             double strength, double health, double speed,
-            int viewingDistance
+            double viewingDistance
     ) {
         super(mobType, world, position, level, strength, health, speed);
         this.viewingDistance = viewingDistance * world.getGameManager().tileSize;
     }
 
-    public void setViewingDistance(int distance) {
+    public void setViewingDistance(double distance) {
         if (distance < 0) {
             throw new IllegalArgumentException("Viewing distance cannot be negative.");
         }
         this.viewingDistance = distance;
     }
-    public int getViewingDistance() {
+    public double getViewingDistance() {
         return viewingDistance;
     }
 

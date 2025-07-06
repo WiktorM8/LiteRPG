@@ -1,8 +1,11 @@
 package Game.World;
 
+import Game.Entity.Mob.Mob;
 import Game.Entity.Mob.Player;
 import Game.GameManager;
 import Game.World.Model.Tile;
+
+import java.util.ArrayList;
 
 public abstract class BaseWorld {
     protected GameManager gameManager;
@@ -12,6 +15,7 @@ public abstract class BaseWorld {
     protected int width, height;
     protected int spawnX, spawnY;
     protected Tile[][] map;
+    protected ArrayList<Mob> mobs;
 
     public BaseWorld(GameManager gameManager, int width, int height, int spawnX, int spawnY, Tile[][] map) {
         this.gameManager = gameManager;
@@ -20,6 +24,7 @@ public abstract class BaseWorld {
         this.spawnX = spawnX;
         this.spawnY = spawnY;
         this.map = map;
+        this.mobs = new ArrayList<>();
     }
 
 
@@ -65,10 +70,41 @@ public abstract class BaseWorld {
         }
         return map[y][x];
     }
+
+    /**
+     * Not recommended to use this method directly.
+     */
+    public void setMobs(ArrayList<Mob> mobs) {
+        this.mobs = mobs;
+    }
+    public void addMob(Mob mob) {
+        mobs.add(mob);
+    }
+    public void sortMobs() {
+        mobs.sort((m1, m2) -> {
+            int cmpY = Double.compare(m1.getPosition().getY(), m2.getPosition().getY());
+            if (cmpY != 0) return cmpY;
+            return Double.compare(m1.getPosition().getX(), m2.getPosition().getX());
+        });
+    }
+    public ArrayList<Mob> getMobs() {
+        return mobs;
+    }
+    public ArrayList<Mob> getMobsSorted() {
+        sortMobs();
+        return mobs;
+    }
+
     public Player getPlayer() {
         return gameManager.getGame().getPlayer();
     }
     public int getTileSize() {
         return gameManager.tileSize;
+    }
+
+    public void update() {
+        for (Mob mob : mobs) {
+            mob.update();
+        }
     }
 }

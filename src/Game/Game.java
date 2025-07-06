@@ -1,11 +1,11 @@
 package Game;
 
 import Game.Camera.WorldCamera;
+import Game.Entity.Mob.Enemy.Bandit;
 import Game.Entity.Mob.Player;
 import Game.World.BaseWorld;
 import Game.World.Enum.WorldType;
 import Game.World.Loader.WorldLoader;
-import Game.World.Model.Position;
 import Logger.ErrorLogger;
 
 public class Game implements Runnable {
@@ -35,6 +35,7 @@ public class Game implements Runnable {
     }
 
     private void update() {
+        world.update();
         player.update();
         camera.focusEntity(player);
 

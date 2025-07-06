@@ -15,6 +15,7 @@ import static java.lang.Math.abs;
 public class Player extends Mob {
     private static final int DEFAULT_X = 0;
     private static final int DEFAULT_Y = 0;
+    private static final int DEFAULT_LEVEL = 1;
     private static final int DEFAULT_STRENGTH = 10;
     private static final int DEFAULT_HEALTH = 100;
     private static final int DEFAULT_MANA = 100;
@@ -32,6 +33,7 @@ public class Player extends Mob {
             MobType.PLAYER,
             world,
             new Position(DEFAULT_X, DEFAULT_Y),
+            DEFAULT_LEVEL,
             DEFAULT_STRENGTH,
             DEFAULT_HEALTH,
             DEFAULT_SPEED

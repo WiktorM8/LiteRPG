@@ -1,5 +1,7 @@
 package Renderer.World;
 
+import Game.Entity.Entity;
+import Game.Entity.Mob.Enemy.Bandit;
 import Game.World.BaseWorld;
 import Game.World.Model.Position;
 import Game.World.Model.Tile;

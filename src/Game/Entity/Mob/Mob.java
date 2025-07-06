@@ -16,8 +16,9 @@ public abstract class Mob extends Entity {
     protected double speed;
     protected double level;
 
-    public Mob(MobType mobType, BaseWorld world, Position position, double strength, double health, double speed) {
+    public Mob(MobType mobType, BaseWorld world, Position position, int level, double strength, double health, double speed) {
         super(EntityType.MOB, world, position);
+        this.level = level;
         this.direction = DirectionType.NONE;
         this.mobType = mobType;
         this.strength = strength;

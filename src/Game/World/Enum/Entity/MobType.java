@@ -5,13 +5,20 @@ import Renderer.Texturer.Enum.EntityTexture;
 import Renderer.Texturer.Model.EntityTextures;
 
 public enum MobType {
-    PLAYER("Player", "Player", new EntityTextures(
+    PLAYER("PLAYER", "Player", new EntityTextures(
             EntityTexture.PLAYER_STANDING,
             EntityTexture.PLAYER_WALKING_UP,
             EntityTexture.PLAYER_WALKING_DOWN,
             EntityTexture.PLAYER_WALKING_LEFT,
             EntityTexture.PLAYER_WALKING_RIGHT
-    ), new Color(255, 255, 255));
+    ), new Color(255, 255, 255)),
+    BANDIT("BANDIT", "Bandit", new EntityTextures(
+            EntityTexture.BANDIT_STANDING,
+            EntityTexture.BANDIT_STANDING,
+            EntityTexture.BANDIT_STANDING,
+            EntityTexture.BANDIT_STANDING,
+            EntityTexture.BANDIT_STANDING
+    ), new Color(150, 75, 0));
 
     private final String type;
     private final String name;

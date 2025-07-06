@@ -2,7 +2,6 @@ package Game;
 
 import Game.Entity.Mob.Player;
 import Game.Event.Listener.GamePanel.GamePanelKeyListener;
-import Renderer.Entity.PlayerRenderer;
 import Renderer.RenderSystem;
 import Screen.Window.MainWindow;
 import Screen.Panel.GamePanel;
@@ -37,11 +36,7 @@ public final class GameManager {
     }
 
     public RenderSystem getRenderSystem() {
-        RenderSystem renderSystem = new RenderSystem(tileSize, scaleFactor);
-        PlayerRenderer playerRenderer = new PlayerRenderer(renderSystem);
-        renderSystem.registerRenderer(Player.class, playerRenderer);
-
-        return renderSystem;
+        return new RenderSystem(this, tileSize, scaleFactor);
     }
 
     public void mainMenu() {
@@ -75,7 +70,7 @@ public final class GameManager {
             return; // Ensure the game and player are initialized before rendering
         }
         renderSystem.render(g2d, game.getWorld());
-        renderSystem.render(g2d, game.getPlayer());
+        renderSystem.renderMobs(g2d, game.getWorld());
         renderSystem.renderGUI(g2d, this);
     }
 
